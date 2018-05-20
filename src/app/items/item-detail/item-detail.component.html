@@ -7,17 +7,21 @@
       </h1>
     </md-card-title>
   </md-card-header>
-  <form (submit)="saved.emit(selectedItem)">
+  <form #myform="ngForm" (submit)="saved.emit(selectedItem)">
     <md-card-content>
       <md-input-container class="full-width">
-        <input mdInput placeholder="Name" [(ngModel)]="selectedItem.name" type="text" name="name">
+        <input required mdInput placeholder="Name" [(ngModel)]="selectedItem.name" type="text" name="name">
       </md-input-container>
       <md-input-container class="full-width">
         <input mdInput placeholder="Description" [(ngModel)]="selectedItem.description" type="text" name="description">
       </md-input-container>
+      <hr>
+      {{myform.value | json}}
+      <hr>
+      {{myform.valid}}
     </md-card-content>
     <md-card-actions>
-      <button type="submit" md-button>Save</button>
+      <button type="submit"  [disabled]="!myform.valid" md-button>Save</button>
       <button type="button" md-button (click)="cancelled.emit(selectedItem)">Cancel</button>
     </md-card-actions>
   </form>
