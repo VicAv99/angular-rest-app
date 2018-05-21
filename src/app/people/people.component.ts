@@ -14,28 +14,56 @@ export class PeopleComponent implements OnInit {
   constructor(private peopleService: PeopleService) { }
 
   ngOnInit() {
-    this.people = this.peopleService.people;
+    this.getAllPeople();
     this.reset();
+  }
+
+  getAllPeople() {
+    this.peopleService.loadPeople()
+      .subscribe(people => this.people = people);
   }
 
   selectPerson(person) {
     this.currentPerson = person;
   }
 
-  deletePerson(person) {
-    console.log('DELETING', person);
-  }
-
   reset() {
     this.currentPerson = {id: null, firstName: '', nickName: '', lastName: '', jobTitle: ''};
-  }
-
-  savePerson(person) {
-    console.log('SAVING', person);
   }
 
   cancel(person) {
     this.reset();
   }
 
+  savePerson(person) {
+    if (!person.id) {
+      this.createPerson(person);
+    } else {
+      this.updatePerson(person);
+    }
+  }
+
+  createPerson(person) {
+    this.peopleService.create(person)
+      .subscribe(result => {
+        this.getAllPeople();
+        this.reset();
+      })
+  }
+
+  updatePerson(person) {
+    this.peopleService.update(person)
+      .subscribe(result => {
+        this.getAllPeople();
+        this.reset();
+      })
+  }
+
+  deletePerson(person) {
+    this.peopleService.delete(person)
+      .subscribe(result => {
+        this.getAllPeople();
+        this.reset();
+      })
+  }
 }

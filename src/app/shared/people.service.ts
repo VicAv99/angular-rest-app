@@ -1,15 +1,37 @@
+import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { Person } from './person.model';
+
+const BASE_URL = 'http://localhost:3000/people/';
+const HEADER = {headers: new Headers({'Content-Type': 'application/json'})};
 
 @Injectable()
 export class PeopleService {
-  people = [
-    { id: 1, firstName: 'Victor', nickName: 'SlickVic', lastName: 'Avila', jobTitle: 'Developer' },
-    { id: 2, firstName: 'Christopher', nickName: 'Bropher', lastName: 'Take', jobTitle: 'Developer' },
-    { id: 3, firstName: 'Micah', nickName: 'Big Mike', lastName: 'Torres', jobTitle: 'Developer' },
-    { id: 4, firstName: 'Jonathan', nickName: 'Garv', lastName: 'Garvey', jobTitle: 'Lead Engineer' },
-    { id: 5, firstName: 'Joshua', nickName: 'Josh', lastName: 'Jones', jobTitle: 'Developer' },
-    { id: 6, firstName: 'Josh', nickName: 'Yoshi', lastName: 'de Gouveia', jobTitle: 'Developer' },
-    { id: 6, firstName: 'Blaise', nickName: 'Big B', lastName: 'Tshiamala', jobTitle: 'Developer' },
-  ];
+  constructor(private http: Http) { }
+
+  loadPeople() {
+    return this.http.get(`${BASE_URL}`)
+      .map(res => res.json());
+  }
+
+  loadPerson(id) {
+    return this.http.get(`${BASE_URL}${id}`)
+      .map(res => res.json());
+  }
+
+  create(person: Person) {
+    return this.http.post(`${BASE_URL}`, JSON.stringify(person), HEADER)
+    .map(res => res.json());
+  }
+
+  update(person: Person) {
+    return this.http.patch(`${BASE_URL}${person.id}`, JSON.stringify(person), HEADER)
+      .map(res => res.json());
+  }
+
+  delete(person: Person) {
+    return this.http.delete(`${BASE_URL}${person.id}`)
+      .map(res => res.json());
+  }
 
 }

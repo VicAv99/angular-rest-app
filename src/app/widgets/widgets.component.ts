@@ -13,28 +13,56 @@ export class WidgetsComponent implements OnInit {
   constructor(private widgetsService: WidgetsService) { }
 
   ngOnInit() {
-    this.widgets = this.widgetsService.widgets;
+    this.loadWidgets();
     this.reset();
   }
 
-  reset() {
-    this.currentWidget = { id: null, name: '', description: '' };
+  loadWidgets() {
+    this.widgetsService.loadWidgets()
+      .subscribe(widgets => this.widgets = widgets)
   }
 
   selectWidget(widget) {
     this.currentWidget = widget;
   }
 
-  deleteWidget(widget) {
-    console.log('DELETE WIDGET', widget);
-  }
-
-  saveWidget(widget) {
-    console.log('SAVING WIDGET', widget);
-    this.reset();
+  reset() {
+    this.currentWidget = { id: null, name: '', description: '' };
   }
 
   cancel(widget) {
     this.reset();
+  }
+
+  saveWidget(widget) {
+    if (!widget.id) {
+      this.createWidget(widget);
+    } else {
+      this.updateWidget(widget);
+    }
+  }
+
+  createWidget(widget) {
+    this.widgetsService.create(widget)
+      .subscribe(result => {
+        this.loadWidgets();
+        this.reset();
+      })
+  }
+
+  updateWidget(widget) {
+    this.widgetsService.update(widget)
+      .subscribe(result => {
+        this.loadWidgets();
+        this.reset();
+      });
+  }
+
+  deleteWidget(widget) {
+    this.widgetsService.delete(widget)
+      .subscribe(result => {
+        this.loadWidgets();
+        this.reset();
+      })
   }
 }
