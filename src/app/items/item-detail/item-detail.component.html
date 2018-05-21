@@ -15,10 +15,6 @@
       <md-input-container class="full-width">
         <input mdInput placeholder="Description" [(ngModel)]="selectedItem.description" type="text" name="description">
       </md-input-container>
-      <hr>
-      {{myform.value | json}}
-      <hr>
-      {{myform.valid}}
     </md-card-content>
     <md-card-actions>
       <button type="submit"  [disabled]="!myform.valid" md-button>Save</button>
