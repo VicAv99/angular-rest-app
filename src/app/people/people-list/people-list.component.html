@@ -1,0 +1,20 @@
+<md-card>
+  <md-card-header>
+    <md-card-title>
+      <h1>People</h1>
+    </md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <md-list>
+      <md-list-item *ngFor="let person of people" (click)="selected.emit(person)">
+        <h2 md-line>First Name: {{person.firstName}}</h2>
+        <h2 md-line>Last Name: {{person.lastName}}</h2>
+        <p md-line>"{{person.nickName}}"</p>
+        <p md-line>job title: {{person.jobTitle}}</p>
+        <button md-icon-button (click)="deleted.emit(person)">
+          <md-icon>close</md-icon>
+        </button>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>

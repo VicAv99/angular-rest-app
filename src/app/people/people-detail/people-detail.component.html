@@ -1,0 +1,38 @@
+<md-card>
+  <md-card-header>
+    <md-card-title>
+      <h1>
+        <span *ngIf="selectedPerson.id; else prompt">Editing {{originalPerson}}</span>
+        <ng-template #prompt>Create</ng-template>
+      </h1>
+    </md-card-title>
+  </md-card-header>
+  <form (submit)="saved.emit(selectedPerson)" #form="ngForm">
+    <md-card-content>
+      <md-input-container>
+        <input mdInput type="text" required
+                placeholder="first name"
+                [(ngModel)]="selectedPerson.firstName" name="first">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput type="text"
+                placeholder="nickname"
+                [(ngModel)]="selectedPerson.nickName" name="nickname">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput type="text" required
+                placeholder="last name"
+                [(ngModel)]="selectedPerson.lastName" name="last">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput type="text"
+                placeholder="job title"
+                [(ngModel)]="selectedPerson.jobTitle" name="title">
+      </md-input-container>
+    </md-card-content>
+    <md-card-actions>
+      <button type="submit" md-button [disabled]="!form.valid">Save</button>
+      <button type="button" md-button (click)="cancelled.emit(selectedPerson)">Cancel</button>
+    </md-card-actions>
+  </form>
+</md-card>

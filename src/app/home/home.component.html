@@ -4,6 +4,10 @@
   </div>
 
   <div class="col-50">
-    <app-widgets></app-widgets>
+    <app-widgets-list [widgets]="widgets" [readonly]="true"></app-widgets-list>
+  </div>
+
+  <div class="col-50">
+    <app-people-list [people]="people" [readonly]="true"></app-people-list>
   </div>
 </div>

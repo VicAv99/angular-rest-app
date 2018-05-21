@@ -1,0 +1,10 @@
+<div class="container">
+  <!-- list -->
+  <app-people-list class="col-50" [people]="people"
+                    (selected)="selectPerson($event)"
+                    (deleted)="deletePerson($event)"></app-people-list>
+  <!-- details -->
+  <app-people-detail class="col-50" [person]="currentPerson"
+                     (saved)="savePerson($event)"
+                     (cancelled)="cancel($event)"></app-people-detail>
+</div>

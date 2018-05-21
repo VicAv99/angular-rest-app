@@ -17,6 +17,10 @@ import { HomeComponent } from './home/home.component';
 import { WidgetsComponent } from './widgets/widgets.component';
 import { WidgetsListComponent } from './widgets/widgets-list/widgets-list.component';
 import { WidgetsDetailComponent } from './widgets/widgets-detail/widgets-detail.component';
+import { PeopleComponent } from './people/people.component';
+import { PeopleService } from './shared/people.service';
+import { PeopleListComponent } from './people/people-list/people-list.component';
+import { PeopleDetailComponent } from './people/people-detail/people-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,10 @@ import { WidgetsDetailComponent } from './widgets/widgets-detail/widgets-detail.
     ItemDetailComponent,
     WidgetsComponent,
     WidgetsListComponent,
-    WidgetsDetailComponent
+    WidgetsDetailComponent,
+    PeopleComponent,
+    PeopleListComponent,
+    PeopleDetailComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -37,7 +44,7 @@ import { WidgetsDetailComponent } from './widgets/widgets-detail/widgets-detail.
     AppRoutingModule,
     AppMaterialModule
   ],
-  providers: [ItemsService, WidgetsService],
+  providers: [ItemsService, WidgetsService, PeopleService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
