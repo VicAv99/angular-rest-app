@@ -34,4 +34,12 @@ export class PeopleService {
       .map(res => res.json());
   }
 
+  search(term: string) {
+    const search = new URLSearchParams();
+    search.set('q', term);
+
+    return this.http.get(`${BASE_URL}`, { search })
+      .map(res => res.json());
+  }
+
 }

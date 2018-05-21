@@ -40,4 +40,12 @@ export class HomeComponent implements OnInit {
     this.peopleService.loadPeople()
       .subscribe(people => this.people = people);
   }
+
+  handleResults(items) {
+    this.items = items;
+  }
+
+  handlePeople(people) {
+    this.people = people;
+  }
 }

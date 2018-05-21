@@ -21,6 +21,8 @@ import { PeopleComponent } from './people/people.component';
 import { PeopleService } from './shared/people.service';
 import { PeopleListComponent } from './people/people-list/people-list.component';
 import { PeopleDetailComponent } from './people/people-detail/people-detail.component';
+import { ItemsSearchComponent } from './items/items-search/items-search.component';
+import { PeopleSearchComponent } from './people/people-search/people-search.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { PeopleDetailComponent } from './people/people-detail/people-detail.comp
     WidgetsDetailComponent,
     PeopleComponent,
     PeopleListComponent,
-    PeopleDetailComponent
+    PeopleDetailComponent,
+    ItemsSearchComponent,
+    PeopleSearchComponent
   ],
   imports: [
     BrowserAnimationsModule,
